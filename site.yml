@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Запускаем Docker контейнер с NGINX
+      docker_container:
+        name: nginx-container
+        image: my-nginx-site
+        state: started
+        ports:
+          - "80:80"
+    - name: Собираем Docker образ
+      docker_image:
+        name: my-nginx-site
+        build:
+          path: .
